@@ -45,7 +45,7 @@ Within the build directory there should be an executable file that you can now r
 ```
 
 ### Bash Script
-Alternatively, you could use the bash script in the main (base) directory to clean, build, and run the program:
+Alternatively, you could use the bash script in the main (root) directory to clean, build, and run the program:
 ```sh
 ./bash_build.sh
 ```
