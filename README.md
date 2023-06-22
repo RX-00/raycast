@@ -24,11 +24,11 @@ For Windows systems you need to install SFML through their website: https://www.
 ### Building
 First, you need to clone this repository to your local machine.
 ```sh
-git clone https://github.com/RX-00/EC327_Proj
+git clone https://github.com/RX-00/raycast
 ```
 Next, we need to go inside the main directory and build the project.
 ```sh
-cd EC327_Proj
+cd raycast
 mkdir build && cd build
 cmake ..
 cmake --build .
@@ -41,7 +41,7 @@ cmake --build . --target clean
 ### Running
 Within the build directory there should be an executable file that you can now run with the following command:
 ```sh
-./EC327_Proj
+./raycast
 ```
 
 ### Bash Script

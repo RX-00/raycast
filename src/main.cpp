@@ -11,10 +11,11 @@
 
 // User System Directory Libraries
 #include "config.h"
+/*
 #include "renderer.h"
 #include "constants.h"
 #include "keyboard.h"
-
+*/
 
 int main() {
     return 0;
