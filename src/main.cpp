@@ -54,6 +54,14 @@ void raycast() {
             // If player edits the mini map
             case sf::Event::MouseButtonReleased: {
                 auto mouse_click = e.mouseButton;
+                int x_pos = mouse_click.x;
+                int y_pos = mouse_click.y;
+                if (x_pos > 0 && x_pos < MAP_SIZE * MINI_MAP_TILE_SIZE &&
+                    y_pos > 0 && y_pos < MAP_SIZE * MINI_MAP_TILE_SIZE) {
+                    x_pos /= MINI_MAP_TILE_SIZE;
+                    y_pos /= MINI_MAP_TILE_SIZE;
+                    map.setTile(x_pos, y_pos, !(map.getTile(x_pos, y_pos)));
+                }
                 break;
             }
             
@@ -63,6 +71,38 @@ void raycast() {
         }
         // get player input
         player.execInput(playerInput);
+
+        // update the window by clearing the previous frame
+        window.clear();
+        drawRendererBuffer.resetPixels();
+        mini_mapTexture.clear(sf::Color::Transparent);
+
+        /*
+        
+            RAYCASTING ALGORITHM
+        
+        */
+
+        // calculate ray angle
+        float ray_angle = player.getRayAngle();
+        bool isDown;
+
+        // scan over the window width view of the player
+        for (int i = 0; i < WINDOW_WIDTH; i++) {
+            sf::Vector2f horiz_intersect;
+            sf::Vector2f verti_intersect;
+
+            if (ray_angle < 180) {
+
+            }
+            if (ray_angle < 270 && ray_angle > 90) {
+
+            }
+        }
+
+
+
+        window.display();
     }
 }
 

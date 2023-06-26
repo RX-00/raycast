@@ -28,4 +28,6 @@ class Player {
         Player(); // constructor
         void execInput(const KeyInputs& keys); // do input from keyboard: WASD movement
         void draw(sf::RenderTexture& window);
+        float getAngle();
+        float getRayAngle();
 };

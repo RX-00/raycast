@@ -50,3 +50,11 @@ void Player::draw(sf::RenderTexture& window) {
                             y_pos / MINI_MAP_SCALE - 5);
     window.draw(playerModel);
 }
+
+float Player::getAngle() {
+    return angle;
+}
+
+float Player::getRayAngle() {
+    return wrap_around_deg(getAngle() - FOV / 2);
+}
