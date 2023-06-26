@@ -1,8 +1,15 @@
+/*
+    Collection of helper functions that do small conversions and calculations
+*/
+
+#pragma once
+
 #include <string>
 #include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include "Configs.h"
+
 
 // Convert degrees to radians
 float conv_deg_to_rad(float degrees) {
@@ -25,5 +32,5 @@ float wrap_around_deg(float angle) {
 float calc_dist(const sf::Vector2f& vec_a, sf::Vector2f& vec_b) {
     float delta_x = vec_a.x - vec_b.x;
     float delta_y = vec_a.y - vec_b.y;
-    return std::sqrt(std::pow(delta_x, 2.0) + std::pow(delta_y, 2.0));
+    return std::sqrt(std::pow(delta_x, 2) + std::pow(delta_y, 2));
 }

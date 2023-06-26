@@ -1,6 +1,19 @@
+/*
+    Player class to represent the user's game character
+
+    has the state variables of the player, and member methods of
+    executing input from keyboard and drawing the player character on the
+    mini map 
+*/
+
+
+#pragma once
+
 #include <iostream>
+#include <cmath>
 #include <SFML/Graphics.hpp>
 #include "KeyInputs.h"
+#include "Configs.h"
 
 class Player {
     private:
@@ -13,5 +26,6 @@ class Player {
 
     public:
         Player(); // constructor
-        void execInput(const KeyInputs& keys); // do input from keyboard
+        void execInput(const KeyInputs& keys); // do input from keyboard: WASD movement
+        void draw(sf::RenderTexture& window);
 };

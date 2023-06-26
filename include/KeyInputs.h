@@ -24,7 +24,7 @@ class KeyInputs {
     void update(sf::Event e);
     
     // check if key pressed
-    bool isKeyPress(sf::Keyboard::Key key);
+    bool isKeyPress(sf::Keyboard::Key key) const;
 
     // reset keys back to unpressed state
     void resetKeyUnpress();

@@ -19,5 +19,5 @@ const int WINDOW_WIDTH = 2048;  // 2K resolution | aspect ratio 1.90
 const int WINDOW_HEIGHT = 1080;
 const int MAP_SIZE = 20;
 const int TILE_SIZE = 64;
-const int MINI_MAP_SCALE = 3;
+const int MINI_MAP_SCALE = 4;
 const int MINI_MAP_TILE_SIZE = TILE_SIZE / MINI_MAP_SCALE;
