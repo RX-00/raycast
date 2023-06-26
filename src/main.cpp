@@ -11,12 +11,14 @@
 
 // User System Directory Libraries
 #include "config.h"
-/*
-#include "renderer.h"
-#include "constants.h"
-#include "keyboard.h"
-*/
+#include "Renderer.h"
+#include "Configs.h"
+#include "KeyInputs.h"
+#include "HelperFxns.h"
+
 
 int main() {
+    std::cout << "\n\nInitializing raycast demo..." << std::endl;
+
     return 0;
 }
