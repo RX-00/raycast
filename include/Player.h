@@ -14,6 +14,7 @@
 #include <SFML/Graphics.hpp>
 #include "KeyInputs.h"
 #include "Configs.h"
+#include "HelperFxns.hpp"
 
 class Player {
     private:

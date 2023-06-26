@@ -2,8 +2,6 @@
     Collection of helper functions that do small conversions and calculations
 */
 
-#pragma once
-
 #include <string>
 #include <iostream>
 #include <cmath>
@@ -12,13 +10,13 @@
 
 
 // Convert degrees to radians
-float conv_deg_to_rad(float degrees) {
+static float conv_deg_to_rad(float degrees) {
     return degrees * PI / 180.0f;
 }
 
 // Determine the angle in degrees, catching cases of wrap around
 // i.e. when the angle is not within [0, 360]
-float wrap_around_deg(float angle) {
+static float wrap_around_deg(float angle) {
     if (angle < 0)
         return angle + 360.0f;
     else if (angle > 360)
@@ -29,7 +27,7 @@ float wrap_around_deg(float angle) {
 
 // Calculate the distance between two 2D points
 // uses the general distance formulat of sqrt(x^2 + y^2)
-float calc_dist(const sf::Vector2f& vec_a, sf::Vector2f& vec_b) {
+static float calc_dist(const sf::Vector2f& vec_a, sf::Vector2f& vec_b) {
     float delta_x = vec_a.x - vec_b.x;
     float delta_y = vec_a.y - vec_b.y;
     return std::sqrt(std::pow(delta_x, 2) + std::pow(delta_y, 2));
