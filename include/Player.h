@@ -30,4 +30,6 @@ class Player {
         void draw(sf::RenderTexture& window);
         float getAngle();
         float getRayAngle();
+        float getX();
+        float getY();
 };

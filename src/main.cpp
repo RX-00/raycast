@@ -10,6 +10,7 @@
 #include <SFML/Audio.hpp>
 
 // User System Directory Libraries
+#include "HelperFxns.h"
 #include "Renderer.h"
 #include "Configs.h"
 #include "KeyInputs.h"
@@ -31,8 +32,8 @@ void raycast() {
                             (float)MINI_MAP_TILE_SIZE * MAP_SIZE});
     sf::RectangleShape mini_mapTile;
     mini_mapTile.setSize({MINI_MAP_TILE_SIZE, MINI_MAP_TILE_SIZE});
-    mini_mapTile.setFillColor(sf::Color::Yellow);
-    mini_mapTile.setOutlineColor(sf::Color::Black);
+    mini_mapTile.setFillColor(sf::Color::Black);
+    mini_mapTile.setOutlineColor(sf::Color::White);
     mini_mapTile.setOutlineThickness(1.1);
 
     // Setup Renderer, map, and player
@@ -85,29 +86,64 @@ void raycast() {
 
         // calculate ray angle
         float ray_angle = player.getRayAngle();
-        bool isDown;
+        bool isLeft;
 
         // scan over the window width view of the player
         for (int i = 0; i < WINDOW_WIDTH; i++) {
             sf::Vector2f horiz_intersect;
             sf::Vector2f verti_intersect;
+            sf::Vector2f init_horiz_intersect;
+            sf::Vector2f init_verti_intersect;
+            sf::Vector2f horiz_dist;
+            sf::Vector2f verti_dist;
+            sf::Vector2f horiz_next;
+            sf::Vector2f verti_next;
+            int horiz_gridX;
+            int horiz_gridY;
+            int verti_gridX;
+            int verti_GridY;
 
+            /*
+                Horizonal scan
+            */
             if (ray_angle < 180) {
-
+                init_horiz_intersect.y = std::floor(player.getY() / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+                horiz_dist.y = TILE_SIZE;
+                horiz_dist.x = TILE_SIZE / std::tan(conv_deg_to_rad(ray_angle));
+            } else {
+                init_horiz_intersect.y = std::floor(player.getY() / TILE_SIZE) * TILE_SIZE - 1;
+                horiz_dist.y = -TILE_SIZE;
+                horiz_dist.x = TILE_SIZE / -std::tan(conv_deg_to_rad(ray_angle));
             }
-            if (ray_angle < 270 && ray_angle > 90) {
-
+            init_horiz_intersect.x = (init_horiz_intersect.y - player.getY()) /
+                                     std::tan(conv_deg_to_rad(ray_angle)) +
+                                     player.getX();
+            horiz_gridX = std::floor(init_horiz_intersect.x / TILE_SIZE);
+            horiz_gridY = std::floor(init_horiz_intersect.y / TILE_SIZE);
+            horiz_next = init_horiz_intersect;
+            while ((horiz_gridX >= 0 && horiz_gridX < MAP_SIZE) && 
+                   (map.getTile(horiz_gridX, horiz_gridY) == 0)) {
+                horiz_next += horiz_dist;
+                horiz_gridX = std::floor(horiz_next.x / TILE_SIZE);
+                horiz_gridY = std::floor(horiz_next.y / TILE_SIZE);
             }
+            horiz_intersect = horiz_next;
+
+            
+            /*
+                Vertical scan
+            */
+
         }
 
-
+        drawRendererBuffer.render(window);
 
         window.display();
     }
 }
 
 int main(int argc, char* argv[]) {
-    std::cout << "\n\nInitializing raycast demo..." << std::endl;
+    std::cout << "\n\nInitializing raycast demo...\n" << std::endl;
     
     raycast();
 

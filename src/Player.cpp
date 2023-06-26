@@ -58,3 +58,11 @@ float Player::getAngle() {
 float Player::getRayAngle() {
     return wrap_around_deg(getAngle() - FOV / 2);
 }
+
+float Player::getX() {
+    return x_pos;
+}
+
+float Player::getY() {
+    return y_pos;
+}
