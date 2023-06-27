@@ -9,7 +9,12 @@ Player::Player() {
     x_pos = 153;
     y_pos = 221;
     angle = 0;
-    playerModel.setRadius({5.0f});
+    x_spd = 0;
+    y_spd = 0;
+    playerModel.setRadius({7.0f});
+    playerModel.setFillColor(sf::Color::White);
+    playerModel.setOutlineColor(sf::Color::Black);
+    playerModel.setOutlineThickness(1.5);
     x_spd = std::cos(angle);
     y_spd = std::sin(angle);
 }
@@ -18,8 +23,8 @@ void Player::execInput(const KeyInputs& keys) {
     float angle_move = conv_deg_to_rad(angle);
 
     if (keys.isKeyPress(sf::Keyboard::W)) { // W move forward
-        x_pos += x_spd * PLAYER_SPEED;
-        y_pos += y_spd * PLAYER_SPEED;
+        x_pos += x_spd * PLAYER_SPEED * 2;
+        y_pos += y_spd * PLAYER_SPEED * 2;
     }
 
     if (keys.isKeyPress(sf::Keyboard::A)) { // A turn left
@@ -32,8 +37,8 @@ void Player::execInput(const KeyInputs& keys) {
     }
 
     if (keys.isKeyPress(sf::Keyboard::S)) { // S move backward
-        x_pos -= x_spd * PLAYER_SPEED;
-        y_pos -= y_spd * PLAYER_SPEED;
+        x_pos -= x_spd * PLAYER_SPEED * 2;
+        y_pos -= y_spd * PLAYER_SPEED * 2;
     }
 
     if (keys.isKeyPress(sf::Keyboard::D)) { // D turn right

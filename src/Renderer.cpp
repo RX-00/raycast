@@ -25,7 +25,7 @@ void Renderer::renderLine(sf::RenderTarget& target,
     line[0].color = color;
     line[1].color = color;
 
-    target.draw(line.data(), 2, sf::PrimitiveType::Lines);
+    target.draw(line.data(), 2, sf::PrimitiveType::LinesStrip);
 }
 
 void Renderer::render(sf::RenderTarget& target) {

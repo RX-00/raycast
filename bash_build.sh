@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd ~/Documents/raycast
+cp content/map.txt build/map.txt
 cd build
 
 # cleaning
