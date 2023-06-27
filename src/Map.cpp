@@ -3,10 +3,22 @@
 */
 
 #include "Map.h"
+#include <cassert>
 
 
 Map::Map() {
-    std::ifstream inFile("content/map.txt");
+    std::ifstream inFile("map.txt"); // NOTE: unfortunately needs to be in build/
+    if (inFile.fail()) {
+        std::cerr << "ERR: Could not find map" << std::endl;
+    }
+    std::string line;
+    map.reserve(MAP_SIZE * MAP_SIZE);
+    while (std::getline(inFile, line)) {
+        for (auto ch : line) {
+            map.push_back(ch - '0');
+        }
+    }
+    assert(map.size() == (MAP_SIZE * MAP_SIZE));
 }
 
 int Map::getTile(int x_pos, int y_pos) const {

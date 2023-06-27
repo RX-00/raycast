@@ -33,4 +33,6 @@ class Player {
         float getRayAngle();
         float getX();
         float getY();
+        float getXspd();
+        float getYspd();
 };

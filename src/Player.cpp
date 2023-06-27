@@ -6,7 +6,10 @@
 
 
 Player::Player() {
-    playerModel.setRadius(5.0f);
+    x_pos = 153;
+    y_pos = 221;
+    angle = 0;
+    playerModel.setRadius({5.0f});
     x_spd = std::cos(angle);
     y_spd = std::sin(angle);
 }
@@ -21,7 +24,9 @@ void Player::execInput(const KeyInputs& keys) {
 
     if (keys.isKeyPress(sf::Keyboard::A)) { // A turn left
         angle -= PLAYER_SPEED;
-        angle = wrap_around_deg(angle);
+        if (angle < 0) {
+            angle += 360;
+        }
         x_spd = std::cos(angle_move);
         y_spd = std::sin(angle_move);
     }
@@ -33,7 +38,9 @@ void Player::execInput(const KeyInputs& keys) {
 
     if (keys.isKeyPress(sf::Keyboard::D)) { // D turn right
         angle += PLAYER_SPEED;
-        angle = wrap_around_deg(angle);
+        if (angle > 360) {
+            angle -= 360;
+        }
         x_spd = std::cos(angle_move);
         y_spd = std::sin(angle_move);
     }
@@ -64,4 +71,12 @@ float Player::getX() {
 
 float Player::getY() {
     return y_pos;
+}
+
+float Player::getXspd() {
+    return x_spd;
+}
+
+float Player::getYspd() {
+    return y_spd;
 }

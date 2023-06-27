@@ -25,7 +25,7 @@ void KeyInputs::update(sf::Event e) {
 }
 
 bool KeyInputs::isKeyPress(sf::Keyboard::Key key) const {
-    return key_state_map.at(key);
+    return key_state_map[key];
 }
 
 void KeyInputs::resetKeyUnpress(){

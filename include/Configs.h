@@ -10,13 +10,13 @@
 #pragma once
 
 // Player and game constants
-const double PI = 3.141592653589793;
-const float PLAYER_SPEED = 2.5;
+const float PI = 3.1415927;
+const float PLAYER_SPEED = 2.0;
 const int FOV = 60; // seems to be a common practice to set FOV to 60 as default
 
 // Display and map constants
-const int WINDOW_WIDTH = 2048;  // 2K resolution | aspect ratio 1.90
-const int WINDOW_HEIGHT = 1080;
+const int WINDOW_WIDTH = 1280;  // 720p resolution
+const int WINDOW_HEIGHT = 720;
 const int MAP_SIZE = 20;
 const int TILE_SIZE = 64;
 const int MINI_MAP_SCALE = 4;

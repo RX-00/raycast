@@ -28,7 +28,7 @@ static float wrap_around_deg(float angle) {
 // Calculate the distance between two 2D points
 // uses the general distance formulat of sqrt(x^2 + y^2)
 static float calc_dist(const sf::Vector2f& vec_a, sf::Vector2f& vec_b) {
-    float delta_x = vec_a.x - vec_b.x;
-    float delta_y = vec_a.y - vec_b.y;
-    return std::sqrt(std::pow(delta_x, 2) + std::pow(delta_y, 2));
+    float delta_x = (vec_a.x - vec_b.x);
+    float delta_y = (vec_a.y - vec_b.y);
+    return std::sqrt(delta_x * delta_x + delta_y * delta_y);
 }
