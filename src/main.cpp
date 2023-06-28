@@ -23,6 +23,12 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(false);
 
+    // mini map window
+    sf::RenderWindow mini_window({MINI_MAP_TILE_SIZE * MAP_SIZE, MINI_MAP_TILE_SIZE * MAP_SIZE},
+                                 "Mini map");
+    mini_window.setFramerateLimit(60);
+    mini_window.setKeyRepeatEnabled(false);
+
     // Setup the minimap
     sf::RenderTexture mini_mapTexture;
     mini_mapTexture.create(MINI_MAP_TILE_SIZE * MAP_SIZE, 
@@ -41,16 +47,32 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
     Map map;
     Player player;
 
+    // variables needed for the raycast loop
+    sf::Vector2f horiz_intersect;
+    sf::Vector2f verti_intersect;
+    sf::Vector2f init_horiz_intersect;
+    sf::Vector2f init_verti_intersect;
+    sf::Vector2f horiz_dist;
+    sf::Vector2f verti_dist;
+    sf::Vector2f horiz_next;
+    sf::Vector2f verti_next;
+    int horiz_gridX;
+    int horiz_gridY;
+    int verti_gridX;
+    int verti_gridY;
+
 
     // Main loop with keyboard input
     KeyInputs playerInput;
-    while (window.isOpen()) {
+    while (window.isOpen() || mini_window.isOpen()) {
         sf::Event e; // keyboard event
-        while (window.pollEvent(e)) {
+        while (window.pollEvent(e) || mini_window.pollEvent(e)) {
             playerInput.update(e);
             switch (e.type) {
             case sf::Event::Closed:
+                std::cout << "Goodbye!" << std::endl;
                 window.close();
+                mini_window.close();
                 break;
 
             // If player edits the mini map
@@ -77,6 +99,7 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
 
         // update the window by clearing the previous frame
         window.clear();
+        mini_window.clear();
         drawRendererBuffer.resetPixels();
         mini_mapTexture.clear(sf::Color::Transparent);
 
@@ -92,19 +115,6 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
 
         // scan over the window width view of the player
         for (int i = 0; i < WINDOW_WIDTH; i++) {
-            sf::Vector2f horiz_intersect;
-            sf::Vector2f verti_intersect;
-            sf::Vector2f init_horiz_intersect;
-            sf::Vector2f init_verti_intersect;
-            sf::Vector2f horiz_dist;
-            sf::Vector2f verti_dist;
-            sf::Vector2f horiz_next;
-            sf::Vector2f verti_next;
-            int horiz_gridX;
-            int horiz_gridY;
-            int verti_gridX;
-            int verti_gridY;
-
             /*
                 Horizonal line scan
             */
@@ -209,7 +219,7 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
                 drawRendererBuffer.renderLine(mini_mapTexture,
                                               {player.getX() / MINI_MAP_SCALE, player.getY() / MINI_MAP_SCALE},
                                               verti_intersect / (float)MINI_MAP_SCALE,
-                                              {100, 0, 100});
+                                              {210, 0, 210});
             }
         }
         
@@ -217,6 +227,7 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
             Render everything!
         */
         drawRendererBuffer.render(window);
+        drawRendererBuffer.render(mini_window);
 
         // mini map render
         for (int y = 0; y < MAP_SIZE; y++) {
@@ -233,7 +244,8 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
                 }
                 mini_mapTile.setPosition(x * MINI_MAP_TILE_SIZE + 0,
                                          y * MINI_MAP_TILE_SIZE + 0);
-                window.draw(mini_mapTile);
+                //window.draw(mini_mapTile);
+                mini_window.draw(mini_mapTile);
             }
         }
 
@@ -247,8 +259,10 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
 
         mini_mapTexture.display();
         mini_mapSprite.setTexture(&mini_mapTexture.getTexture());
-        window.draw(mini_mapSprite);
+        //window.draw(mini_mapSprite);
+        mini_window.draw(mini_mapSprite);
         window.display();
+        mini_window.display();
     }
 }
 
@@ -256,8 +270,8 @@ void raycast(sf::Color sky_color, sf::Color gnd_color) {
 int main(int argc, char* argv[]) {
     std::cout << "\n\nInitializing raycast demo...\n" << std::endl;
 
-    sf::Color sky_color = {90, 90, 200}; // light blue
-    sf::Color gnd_color = {25, 200, 50}; // dark green
+    sf::Color sky_color = {25, 200, 50}; // light blue 90 90 200
+    sf::Color gnd_color = {90, 90, 200}; // dark green 25, 200, 50
     
     raycast(sky_color, gnd_color);
 

@@ -19,5 +19,5 @@ const int WINDOW_WIDTH = 1500;//1280;  // 720p
 const int WINDOW_HEIGHT = 1240;//720;
 const int MAP_SIZE = 20;
 const int TILE_SIZE = 64;
-const int MINI_MAP_SCALE = 8;
+const int MINI_MAP_SCALE = 4;
 const int MINI_MAP_TILE_SIZE = TILE_SIZE / MINI_MAP_SCALE;
