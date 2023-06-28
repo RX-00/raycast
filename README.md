@@ -4,7 +4,7 @@ EC327 Summer 2023 Project
 This repository is [insert description here].
 
 GIF demo of the program:
-!['file name']('path to file')
+!['raycast_demo.gif']('/content/')
 
 Authors:
 
