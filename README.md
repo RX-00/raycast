@@ -1,10 +1,10 @@
-# -Insert game title here-
+# -Raycasting Engine Demo-
 EC327 Summer 2023 Project
 
-This repository is [insert description here].
+This repository is a demo of a raycast game engine. Similar to the game engine used in the original Wolfenstein 3D game by id Software back in 1992. Raycasting is a method to produce a pseudo three dimensional game world. This is achieved through rendering a 2D game world map into a first persion 3D view by casting rays from the player into the 2D map and drawing a 3D-esque first person world view based on the distance of the rays. Our implementation fully utilizes OOP practices as seen by the formulation of player, map, and renderer engine classes. We also utilize CMake to allow this repo to be easily compiled and debugged across platforms. This implementation of the raycasting algorithm also allows for a map editor in which the map is a gridworld. However, with this current implementation collision detection is not yet possible.
 
 GIF demo of the program:
-!['raycast_demo.gif']('/content/')
+!['raycast_demo.gif'](content/raycast_demo.gif)
 
 Authors:
 
